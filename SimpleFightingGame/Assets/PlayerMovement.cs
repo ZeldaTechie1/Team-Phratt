@@ -3,20 +3,22 @@ using System.Collections;
 
 
 public class PlayerMovement : MonoBehaviour {
-
+	float maxSpeed = 4.5f;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		Vector2 pos = transform.position;
-		pos.x += Input.GetAxis ("Horizontal");
-		transform.position = pos;
+		//Input.GetAxis ("Horizontal");
+		pos.x +=Input.GetAxis ("Horizontal") * (maxSpeed * Time.deltaTime);
 
-		Vector2 pos2 = transform.position;
-		pos.y += Input.GetAxis ("Vertical");
-		transform.position = pos2;
-		}
+		transform.position = pos;
+	}
+
+
 }
