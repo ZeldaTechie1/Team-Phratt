@@ -5,8 +5,14 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
 	float maxSpeed = 4.5f;
-    float jumpSpeed = 350f;
+    float jumpSpeed = 300f;
+    public int direction;
     public bool isGrounded;
+    float attackRate = .25f;
+    bool isBlocking;
+    bool canAttack;
+    float reach = .5f;//distance that the player can reach
+    float damage;
     Rigidbody2D rb;
 
 	// Use this for initialization
@@ -14,11 +20,22 @@ public class PlayerMovement : MonoBehaviour {
 	{
         rb = GetComponent<Rigidbody2D>();
         isGrounded = true;
+        canAttack = true;
+        direction = 1;
+        isBlocking = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        if(Input.GetAxisRaw("Horizontal") > 0)
+        {
+            direction = 1;
+        }
+        else if(Input.GetAxisRaw("Horizontal") < 0)
+        {
+            direction = -1;
+        }
 
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * maxSpeed,rb.velocity.y);
 
@@ -27,16 +44,41 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(Vector2.up * jumpSpeed);
             isGrounded = false;
         }
+        if(Input.GetButtonDown("Fire1") && canAttack)
+        {
+            StartCoroutine(Attack());
+        }
 
 	}
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("I am working!!!!");
+        //Debug.Log("I am working!!!!");
         if(col.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
+    }
+
+    IEnumerator Attack()
+    {
+        canAttack = false;
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, new Vector2(direction * reach, 0));
+        Debug.DrawRay(ray.point, new Vector2(direction * reach,0),Color.red);
+        if (ray.collider != null)
+        {
+            if(direction != ray.collider.GetComponent<PlayerMovement>().Direction())
+            {
+                //ray.collider.gameObject.GetComponent<Health>().Damage();
+            }
+        }
+        yield return new WaitForSeconds(attackRate);
+        canAttack = true;
+    }
+
+    public int Direction()
+    {
+        return direction;
     }
 
 }
