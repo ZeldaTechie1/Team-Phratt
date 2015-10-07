@@ -4,12 +4,12 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	float maxSpeed = 4.5f;
+	float maxSpeed = 5f;
     float jumpSpeed = 300f;
     public int direction;
     public bool isGrounded;
     float attackRate = .25f;
-    bool isBlocking;
+    public bool isBlocking;
     bool canAttack;
     float reach = .5f;//distance that the player can reach
     float damage;
@@ -48,6 +48,17 @@ public class PlayerMovement : MonoBehaviour {
         {
             StartCoroutine(Attack());
         }
+        if(Input.GetButton("Fire2"))
+        {
+            isBlocking = true;
+            maxSpeed = 2.5f;
+        }
+        else
+        {
+            isBlocking = false;
+            maxSpeed = 5f;
+        }
+
 
 	}
 
