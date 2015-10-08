@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	Image image = GetComponent<Image>();
+	 image = GetComponent<Image>();
          
 	}
 
