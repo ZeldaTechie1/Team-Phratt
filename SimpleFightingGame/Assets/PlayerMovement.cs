@@ -12,8 +12,18 @@ public class PlayerMovement : MonoBehaviour {
     public bool isBlocking;
     bool canAttack;
     float reach = .5f;//distance that the player can reach
-    float damage;
+    public float damage;
     Rigidbody2D rb;
+    [SerializeField]
+    Player isPlayer;
+    Input playerInput;
+    Input playerJump;
+    
+    enum Player
+    {
+        Player1,
+        Player2
+    };
 
 	// Use this for initialization
 	void Start () 
@@ -23,32 +33,43 @@ public class PlayerMovement : MonoBehaviour {
         canAttack = true;
         direction = 1;
         isBlocking = false;
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-        if(Input.GetAxisRaw("Horizontal") > 0)
+        float movement;
+        bool jump;
+        bool attack;
+        bool block;
+
+        movement = Input.GetAxisRaw(isPlayer.ToString() + "Movement");
+        jump = Input.GetButtonDown(isPlayer.ToString() + "Jump");
+        attack = Input.GetButtonDown(isPlayer.ToString() + "Attack");
+        block = Input.GetButtonDown(isPlayer.ToString() + "Block");
+
+        if(movement > 0)
         {
             direction = 1;
         }
-        else if(Input.GetAxisRaw("Horizontal") < 0)
+        else if(movement < 0)
         {
             direction = -1;
         }
 
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * maxSpeed,rb.velocity.y);
+        rb.velocity = new Vector2(direction * maxSpeed,rb.velocity.y);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if(jump && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpSpeed);
             isGrounded = false;
         }
-        if(Input.GetButtonDown("Fire1") && canAttack)
+        if(attack && canAttack)
         {
             StartCoroutine(Attack());
         }
-        if(Input.GetButton("Fire2"))
+        if(block)
         {
             isBlocking = true;
             maxSpeed = 2.5f;
@@ -80,7 +101,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if(direction != ray.collider.GetComponent<PlayerMovement>().Direction())
             {
-                //ray.collider.gameObject.GetComponent<Health>().Damage();
+                ray.collider.gameObject.GetComponent<HealthBar>().Damage(2);
             }
         }
         yield return new WaitForSeconds(attackRate);
