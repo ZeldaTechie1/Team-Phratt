@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
         canAttack = true;
         direction = 1;
         isBlocking = false;
+        Debug.Log(isPlayer.ToString());
 
 	}
 	
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour {
         movement = Input.GetAxisRaw(isPlayer.ToString() + "Movement");
         jump = Input.GetButtonDown(isPlayer.ToString() + "Jump");
         attack = Input.GetButtonDown(isPlayer.ToString() + "Attack");
-        block = Input.GetButtonDown(isPlayer.ToString() + "Block");
+        block = Input.GetButton(isPlayer.ToString() + "Block");
 
         if(movement > 0)
         {
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour {
             direction = -1;
         }
 
-        rb.velocity = new Vector2(direction * maxSpeed,rb.velocity.y);
+        rb.velocity = new Vector2(movement * maxSpeed,rb.velocity.y);
 
         if(jump && isGrounded)
         {
@@ -99,9 +100,12 @@ public class PlayerMovement : MonoBehaviour {
         Debug.DrawRay(ray.point, new Vector2(direction * reach,0),Color.red);
         if (ray.collider != null)
         {
-            if(direction != ray.collider.GetComponent<PlayerMovement>().Direction())
+            if(ray.collider.tag == "Player")
             {
-                ray.collider.gameObject.GetComponent<HealthBar>().Damage(2);
+                if(ray.collider.GetComponent<PlayerMovement>().isBlocking && this.direction!= ray.collider.GetComponent<PlayerMovement>().Direction())
+                {
+                    //
+                }
             }
         }
         yield return new WaitForSeconds(attackRate);
