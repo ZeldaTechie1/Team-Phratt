@@ -353,7 +353,7 @@ Prefab:
     - target: {fileID: 11407714, guid: 7f1c61941ca6951499ce88a50f5412ea, type: 2}
       propertyPath: image
       value: 
-      objectReference: {fileID: 305456294}
+      objectReference: {fileID: 1501563321}
     - target: {fileID: 11467686, guid: 7f1c61941ca6951499ce88a50f5412ea, type: 2}
       propertyPath: isPlayer
       value: 1
@@ -628,7 +628,7 @@ Prefab:
     - target: {fileID: 11407714, guid: 7f1c61941ca6951499ce88a50f5412ea, type: 2}
       propertyPath: image
       value: 
-      objectReference: {fileID: 1501563321}
+      objectReference: {fileID: 305456294}
     - target: {fileID: 11467686, guid: 7f1c61941ca6951499ce88a50f5412ea, type: 2}
       propertyPath: isPlayer
       value: 0

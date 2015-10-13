@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     Player isPlayer;
     Input playerInput;
     Input playerJump;
+    public float knockback;
     
     enum Player
     {
@@ -96,16 +97,21 @@ public class PlayerMovement : MonoBehaviour {
     IEnumerator Attack()
     {
         canAttack = false;
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, new Vector2(direction * reach, 0));
-        Debug.DrawRay(ray.point, new Vector2(direction * reach,0),Color.red);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, new Vector2(direction, 0),reach);
+        Debug.DrawRay(transform.position, new Vector2(direction * reach, 0), Color.red);
         if (ray.collider != null)
         {
             if(ray.collider.tag == "Player")
             {
-                if(ray.collider.GetComponent<PlayerMovement>().isBlocking && this.direction!= ray.collider.GetComponent<PlayerMovement>().Direction())
+                if (ray.collider.GetComponent<PlayerMovement>().isBlocking && this.direction == ray.collider.GetComponent<PlayerMovement>().Direction())
                 {
-                    //
+                    ray.collider.GetComponent<HealthBar>().Damage(damage);
                 }
+                else
+                    ray.collider.GetComponent<HealthBar>().Damage(damage);
+                
+
+
             }
         }
         yield return new WaitForSeconds(attackRate);

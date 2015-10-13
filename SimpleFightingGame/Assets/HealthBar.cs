@@ -21,12 +21,18 @@ public class HealthBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-         image.fillAmount = Health;
+         image.fillAmount = Health/maxHealth;
 
           if (Health < minHealth)
-            { Health = minHealth; }
+          {
+            Health = minHealth;
+            Destroy(this.gameObject);
+          }
           if(Health > maxHealth)
-            { Health = maxHealth; }
+          {
+            Health = maxHealth;
+
+        }
 
     }
 }
