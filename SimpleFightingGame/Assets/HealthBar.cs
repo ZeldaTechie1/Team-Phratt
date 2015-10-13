@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour {
     public float Health = 100f;
     public float maxHealth = 100f;
     public float minHealth = 0f;
-    Image image;
+    public Image image;
 
     // Use this for initialization
     void Start () {
@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour {
          
 	}
 
-    void Damage(float value)
+    public void Damage(float value)
     {
         Health = Health - value;
     }

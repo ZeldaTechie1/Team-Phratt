@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{29365DC7-BA9D-7C1E-6116-50ED93DB4CBA}") = "SimpleFightingGame", "Assembly-CSharp.csproj", "{88016F55-7D13-7ED4-FC3B-0E3AFB1035E8}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleFightingGame.CSharp", "SimpleFightingGame.CSharp.csproj", "{2687172D-5B4D-3806-F227-B46CCC8DF128}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{88016F55-7D13-7ED4-FC3B-0E3AFB1035E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88016F55-7D13-7ED4-FC3B-0E3AFB1035E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88016F55-7D13-7ED4-FC3B-0E3AFB1035E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88016F55-7D13-7ED4-FC3B-0E3AFB1035E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2687172D-5B4D-3806-F227-B46CCC8DF128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2687172D-5B4D-3806-F227-B46CCC8DF128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2687172D-5B4D-3806-F227-B46CCC8DF128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2687172D-5B4D-3806-F227-B46CCC8DF128}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 																			GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 =======
 							GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> origin/master
@@ -40,4 +44,5 @@ Global
 		$3.scope = text/plain
 	EndGlobalSection
 
+>>>>>>> origin/master
 EndGlobal

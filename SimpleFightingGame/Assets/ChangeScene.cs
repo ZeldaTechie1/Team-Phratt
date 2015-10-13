@@ -8,4 +8,8 @@ public class ChangeScene : MonoBehaviour {
 	public void ChangeToScene (string SceneChange) {
         Application.LoadLevel(SceneChange);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master
