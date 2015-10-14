@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: .729411781, g: .729411781, b: .729411781, a: 1}
-    m_HighlightedColor: {r: 1, g: .0147058964, b: .0147058964, a: 1}
+    m_HighlightedColor: {r: .0894524455, g: 1, b: .0147058964, a: 1}
     m_PressedColor: {r: .154411793, g: .154411793, b: .154411793, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
     m_ColorMultiplier: 1
@@ -203,7 +203,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -225, y: 189}
+  m_AnchoredPosition: {x: -17, y: 15}
   m_SizeDelta: {x: 261, y: 69}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &132024402
@@ -267,7 +267,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: .5}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: .5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!1 &212479867
@@ -444,7 +444,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -287, y: 129}
+  m_AnchoredPosition: {x: -79, y: -62}
   m_SizeDelta: {x: 137, y: 29}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &417302220
@@ -876,8 +876,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -287, y: 91}
-  m_SizeDelta: {x: 137, y: 30}
+  m_AnchoredPosition: {x: 101.199997, y: -62}
+  m_SizeDelta: {x: 137, y: 29}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2108222763
 MonoBehaviour:
