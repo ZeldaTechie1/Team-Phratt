@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour {
     Player isPlayer;
     Input playerInput;
     Input playerJump;
+    public float knockback;
+    bool isStunned;
+    public float stun;
     
     enum Player
     {
@@ -33,8 +36,7 @@ public class PlayerMovement : MonoBehaviour {
         canAttack = true;
         direction = 1;
         isBlocking = false;
-        Debug.Log(isPlayer.ToString());
-
+        Physics2D.IgnoreLayerCollision(8,8);
 	}
 	
 	// Update is called once per frame
@@ -59,18 +61,19 @@ public class PlayerMovement : MonoBehaviour {
             direction = -1;
         }
 
-        rb.velocity = new Vector2(movement * maxSpeed,rb.velocity.y);
+        if(!isStunned)
+            rb.velocity = new Vector2(movement * maxSpeed,rb.velocity.y);
 
-        if(jump && isGrounded)
+        if(jump && isGrounded && !isStunned)
         {
             rb.AddForce(Vector2.up * jumpSpeed);
             isGrounded = false;
         }
-        if(attack && canAttack)
+        if(attack && canAttack && !isStunned)
         {
             StartCoroutine(Attack());
         }
-        if(block)
+        if(block && !isStunned)
         {
             isBlocking = true;
             maxSpeed = 2.5f;
@@ -96,16 +99,33 @@ public class PlayerMovement : MonoBehaviour {
     IEnumerator Attack()
     {
         canAttack = false;
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, new Vector2(direction * reach, 0));
-        Debug.DrawRay(ray.point, new Vector2(direction * reach,0),Color.red);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, new Vector2(direction, 0),reach);
+        Debug.DrawRay(transform.position, new Vector2(direction * reach, 0), Color.red);
         if (ray.collider != null)
         {
-            if(ray.collider.tag == "Player")
+            Collider2D target = ray.collider;
+            if(target.tag == "Player")
             {
-                if(ray.collider.GetComponent<PlayerMovement>().isBlocking && this.direction!= ray.collider.GetComponent<PlayerMovement>().Direction())
+                if (target.GetComponent<PlayerMovement>().isBlocking)
                 {
-                    //
+                    if(target.GetComponent<PlayerMovement>().Direction() == this.direction)
+                    {
+                        target.GetComponent<HealthBar>().Damage(damage);
+                        StartCoroutine(target.GetComponent<PlayerMovement>().Stun(stun));
+                        target.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                        target.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction,1) * knockback);
+                    }
                 }
+                else
+                {
+                    target.GetComponent<HealthBar>().Damage(damage);
+                    StartCoroutine(target.GetComponent<PlayerMovement>().Stun(stun));
+                    target.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    target.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction, 1) * knockback);
+                }
+
+
+
             }
         }
         yield return new WaitForSeconds(attackRate);
@@ -117,4 +137,10 @@ public class PlayerMovement : MonoBehaviour {
         return direction;
     }
 
+    public IEnumerator Stun(float stunTime)
+    {
+        isStunned = true;
+        yield return new WaitForSeconds(stunTime);
+        isStunned = false;
+    }
 }
