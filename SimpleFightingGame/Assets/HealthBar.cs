@@ -23,12 +23,12 @@ public class HealthBar : MonoBehaviour {
 	void Update () {
          image.fillAmount = Health/maxHealth;
 
-          if (Health < minHealth)
+          if (Health <= minHealth)
           {
             Health = minHealth;
             Destroy(this.gameObject);
           }
-          if(Health > maxHealth)
+          if(Health >= maxHealth)
           {
             Health = maxHealth;
 
